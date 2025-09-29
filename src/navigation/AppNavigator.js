@@ -9,6 +9,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import DetailsScreen from '../screens/DetailsScreen';
+import ReportGeneratorScreen from '../screens/ReportGeneratorScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -26,6 +27,11 @@ function HomeStack() {
         name="Details" 
         component={DetailsScreen} 
         options={{ title: 'Details' }}
+      />
+      <Stack.Screen 
+        name="VoiceReport" 
+        component={ReportGeneratorScreen} 
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

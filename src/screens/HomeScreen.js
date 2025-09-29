@@ -14,20 +14,28 @@ export default function HomeScreen({ navigation }) {
   const features = [
     {
       id: 1,
+      title: 'Voice Report Generator',
+      description: 'Create field reports using voice recording',
+      icon: 'mic-outline',
+      color: ['#667eea', '#764ba2'],
+      screen: 'VoiceReport',
+    },
+    {
+      id: 2,
       title: 'Emergency Response',
       description: 'Quick access to emergency protocols',
       icon: 'medical-outline',
       color: ['#ff6b6b', '#ee5a52'],
     },
     {
-      id: 2,
+      id: 3,
       title: 'Patient Records',
       description: 'Secure patient information management',
       icon: 'document-text-outline',
       color: ['#4ecdc4', '#44a08d'],
     },
     {
-      id: 3,
+      id: 4,
       title: 'Communication',
       description: 'Team coordination and dispatch',
       icon: 'chatbubbles-outline',
@@ -36,7 +44,11 @@ export default function HomeScreen({ navigation }) {
   ];
 
   const handleFeaturePress = (feature) => {
-    navigation.navigate('Details', { feature });
+    if (feature.screen === 'VoiceReport') {
+      navigation.navigate('VoiceReport');
+    } else {
+      navigation.navigate('Details', { feature });
+    }
   };
 
   return (
