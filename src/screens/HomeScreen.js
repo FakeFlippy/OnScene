@@ -58,7 +58,7 @@ export default function HomeScreen({ navigation }) {
           colors={['#667eea', '#764ba2']}
           style={styles.header}
         >
-          <Text style={styles.headerTitle}>Welcome to EMSApp</Text>
+          <Text style={styles.headerTitle}>Welcome to OnScene</Text>
           <Text style={styles.headerSubtitle}>
             Emergency Medical Services Platform
           </Text>
