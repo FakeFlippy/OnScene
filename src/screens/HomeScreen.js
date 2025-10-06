@@ -107,7 +107,7 @@ export default function HomeScreen({ navigation }) {
           <View style={styles.infoSection}>
             <Text style={styles.infoTitle}>Ready for Field Use</Text>
             <Text style={styles.infoText}>
-              EMSApp is designed for emergency medical professionals. 
+              OnScene is designed for emergency medical professionals. 
               Access critical tools and information when you need them most.
             </Text>
           </View>
