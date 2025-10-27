@@ -54,3 +54,9 @@ ENV/
 *.egg-info/
 dist/
 build/
+
+# Environment files (keep .env.example)
+.env
+.env.local
+.env.production
+whisper_service/.env

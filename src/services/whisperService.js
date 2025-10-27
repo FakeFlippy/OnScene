@@ -1,11 +1,9 @@
 /**
  * OnScene EMS - Whisper Service Integration
- * Connects React Native app to local Python Whisper backend
+ * Connects React Native app to Whisper backend (local or Azure cloud)
  */
 
-// Use your computer's IP address instead of localhost for physical devices
-// You can find your IP with: ipconfig (Windows) or ifconfig (Mac/Linux)
-const WHISPER_BASE_URL = 'http://172.25.196.40:5000';  // Update this to your computer's IP
+import { WHISPER_BASE_URL, WHISPER_API_KEY, WHISPER_TIMEOUT } from '../config/whisper.config';
 
 class WhisperService {
   constructor() {
@@ -18,8 +16,14 @@ class WhisperService {
    */
   async checkServiceHealth() {
     try {
+      const headers = {};
+      if (WHISPER_API_KEY) {
+        headers['Authorization'] = `Bearer ${WHISPER_API_KEY}`;
+      }
+      
       const response = await fetch(`${WHISPER_BASE_URL}/health`, {
         method: 'GET',
+        headers,
         timeout: 5000,
       });
       
@@ -70,13 +74,20 @@ class WhisperService {
 
       console.log('Sending audio to Whisper service...');
       
+      const headers = {
+        'Content-Type': 'multipart/form-data',
+      };
+      
+      // Add authentication for production
+      if (WHISPER_API_KEY) {
+        headers['Authorization'] = `Bearer ${WHISPER_API_KEY}`;
+      }
+      
       const response = await fetch(`${WHISPER_BASE_URL}/transcribe`, {
         method: 'POST',
         body: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        timeout: 60000, // 60 second timeout for longer recordings
+        headers,
+        timeout: WHISPER_TIMEOUT,
       });
 
       const result = await response.json();
